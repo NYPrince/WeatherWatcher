@@ -34,7 +34,10 @@ final class RootViewController: UIViewController {
         super.viewDidLoad()
         // Setup Child View Controllers
         setupChildViewController()
+        fetchWeatherData()
+        
     }
+    
     //MARK: - Helper Method
     private func setupChildViewController(){
         
@@ -48,7 +51,7 @@ final class RootViewController: UIViewController {
         dayViewController.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         dayViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         dayViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        dayViewController.view.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        dayViewController.view.heightAnchor.constraint(equalToConstant: Layout.DayView.height).isActive = true
         
         // Configure Week View
         weekViewController.view.topAnchor.constraint(equalTo: dayViewController.view.bottomAnchor).isActive = true
@@ -60,8 +63,30 @@ final class RootViewController: UIViewController {
         dayViewController.didMove(toParent: self)
         weekViewController.didMove(toParent: self)
     }
-    
+    private func fetchWeatherData(){
+        guard let baseUrl = URL(string: "https://darksky.net/forecast")else{
+            return
+        }
+        let authenticatedBaseUrl = baseUrl.appendingPathComponent("2523023f1cb6a651fd5ed31fed08244b")
+        let url = authenticatedBaseUrl.appendingPathComponent("\(42.3601), \(-71.0589)")
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Request failed")
+            }else{
+                print(response)
+            }
+            
+        }.resume()
+    }
 
+}
+extension RootViewController {
+    fileprivate enum Layout {
+        enum DayView {
+             static let height: CGFloat = 200
+        }
+    }
+    
 }
 
 
