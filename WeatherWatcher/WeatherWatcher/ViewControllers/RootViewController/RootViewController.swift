@@ -9,6 +9,16 @@
 import UIKit
 
 final class RootViewController: UIViewController {
+    
+    var viewModel : RootViewModel?{
+        didSet{
+            guard let viewModel = viewModel else {
+                return
+            }
+            setupViewModel(with: viewModel)
+        }
+    }
+    
     //MARK: - Properties
     
     private let dayViewController: DayViewController = {
@@ -34,8 +44,7 @@ final class RootViewController: UIViewController {
         super.viewDidLoad()
         // Setup Child View Controllers
         setupChildViewController()
-        fetchWeatherData()
-        
+       
     }
     
     //MARK: - Helper Method
@@ -63,22 +72,16 @@ final class RootViewController: UIViewController {
         dayViewController.didMove(toParent: self)
         weekViewController.didMove(toParent: self)
     }
-    private func fetchWeatherData(){
-        guard let baseUrl = URL(string: "https://darksky.net/forecast")else{
-            return
-        }
-        let authenticatedBaseUrl = baseUrl.appendingPathComponent("2523023f1cb6a651fd5ed31fed08244b")
-        let url = authenticatedBaseUrl.appendingPathComponent("\(42.3601), \(-71.0589)")
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+    
+    private func setupViewModel(with viewModel: RootViewModel){
+        viewModel.didFetchWeatherData = {(data, error)in
             if let error = error {
-                print("Request failed")
-            }else{
-                print(response)
+                print("unable to fetch weather data (\(error))")
+            }else if let data = data {
+                print(data)
             }
-            
-        }.resume()
+        }
     }
-
 }
 extension RootViewController {
     fileprivate enum Layout {
