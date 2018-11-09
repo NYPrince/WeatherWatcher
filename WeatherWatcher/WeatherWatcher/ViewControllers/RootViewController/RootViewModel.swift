@@ -10,7 +10,12 @@ import Foundation
 
 class RootViewModel {
     
-    typealias DidFetchWeatherDataCompletion = (Data?, Error?) ->Void
+    enum WeatherDataError: Error {
+        case noWeatherDataAvailable
+    }
+    
+    
+    typealias DidFetchWeatherDataCompletion = (DarkSkyResponse?, WeatherDataError?) ->Void
     
     var didFetchWeatherData: DidFetchWeatherDataCompletion?
     
@@ -20,18 +25,33 @@ class RootViewModel {
     
     private func fetchWeatherData(){
         let weatherRequest = WeatherRequest(baseUrl: WeatherService.authenticatedBaseUrl, location: Defaults.location)
-        URLSession.shared.dataTask(with: weatherRequest.url) { (data, response, error) in
+        
+        URLSession.shared.dataTask(with: weatherRequest.url) { [weak self](data, response, error) in
+            if let response = response as? HTTPURLResponse{
+                print("Status Code: \(response.statusCode)")
+            }
             if error != nil {
-                self.didFetchWeatherData?(nil, error )
+                print("Uable to fetch Weather data \(error)")
+                self?.didFetchWeatherData?(nil, .noWeatherDataAvailable )
             }else if let data = data {
-                self.didFetchWeatherData?(data, nil)
+                let decoder = JSONDecoder()
+                
+                do {
+                    let darkSkyResponse = try decoder.decode(DarkSkyResponse.self
+                        , from: data)
+                    self?.didFetchWeatherData?(darkSkyResponse, nil)
+                    
+                }catch{
+                    print("Unable to decode JSON \(error) ")
+                    
+                    self?.didFetchWeatherData?(nil, .noWeatherDataAvailable)
+                }
+                
             } else{
-                self.didFetchWeatherData?(nil, nil)
+                self?.didFetchWeatherData?(nil, .noWeatherDataAvailable)
             }
             
             }.resume()
     }
-    
-    
     
 }

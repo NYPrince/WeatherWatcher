@@ -19,6 +19,7 @@
 		1D2B2E0A218D40C2009594F3 /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2E09218D40C2009594F3 /* WeatherRequest.swift */; };
 		1D2B2E0D218D4401009594F3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2E0C218D4401009594F3 /* Configuration.swift */; };
 		1D2B2E10218E90FE009594F3 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2E0F218E90FE009594F3 /* RootViewModel.swift */; };
+		1DA2EDA721950A7D00727DA9 /* DarkSkyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDA621950A7D00727DA9 /* DarkSkyResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1D2B2E09218D40C2009594F3 /* WeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
 		1D2B2E0C218D4401009594F3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		1D2B2E0F218E90FE009594F3 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		1DA2EDA621950A7D00727DA9 /* DarkSkyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				1D2B2E09218D40C2009594F3 /* WeatherRequest.swift */,
+				1DA2EDA621950A7D00727DA9 /* DarkSkyResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				1D2B2E0A218D40C2009594F3 /* WeatherRequest.swift in Sources */,
 				1D2B2E0D218D4401009594F3 /* Configuration.swift in Sources */,
 				1D2B2E10218E90FE009594F3 /* RootViewModel.swift in Sources */,
+				1DA2EDA721950A7D00727DA9 /* DarkSkyResponse.swift in Sources */,
 				1D2B2E05218BC6A9009594F3 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
