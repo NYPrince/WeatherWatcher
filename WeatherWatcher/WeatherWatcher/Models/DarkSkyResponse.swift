@@ -19,6 +19,8 @@ import Foundation
     }
     
     struct Daily: Codable {
+        let data: [Conditions]
+        
         struct Conditions: Codable {
             let time: Date
             let icon: String
@@ -33,5 +35,29 @@ import Foundation
     
     let currently : Conditions
     let daily: Daily
+}
+extension DarkSkyResponse:WeatherData {
+    var current: CurrentWeatherCondtions {
+        return currently
+    }
+    
+    var forecast: [ForecastWeatherConditions] {
+        return daily.data
+    }
+}
+
+extension DarkSkyResponse.Conditions: CurrentWeatherCondtions {
     
 }
+extension DarkSkyResponse.Daily.Conditions: ForecastWeatherConditions{
+    
+}
+
+
+
+
+
+
+
+
+

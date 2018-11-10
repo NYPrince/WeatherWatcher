@@ -15,7 +15,7 @@ class RootViewModel {
     }
     
     
-    typealias DidFetchWeatherDataCompletion = (DarkSkyResponse?, WeatherDataError?) ->Void
+    typealias DidFetchWeatherDataCompletion = (WeatherData?, WeatherDataError?) ->Void
     
     var didFetchWeatherData: DidFetchWeatherDataCompletion?
     
