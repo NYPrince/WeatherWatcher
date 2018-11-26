@@ -23,6 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-39" y="45"/>
         </scene>
         <!--Day View Controller-->
         <scene sceneID="6bu-e1-m54">
@@ -31,13 +32,93 @@
                     <view key="view" contentMode="scaleToFill" id="kdL-4I-S47">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-bt-oeb">
+                                <rect key="frame" x="166.5" y="28" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My1-y5-8jQ">
+                                <rect key="frame" x="166.5" y="57" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7d-qS-Gf6">
+                                <rect key="frame" x="157.5" y="98" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="238-O3-0go"/>
+                                    <constraint firstAttribute="width" constant="60" id="leH-0o-V0Q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPi-Iw-IK6">
+                                <rect key="frame" x="16" y="117.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUS-gF-0r0">
+                                <rect key="frame" x="166.5" y="178" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql9-Ps-5k1">
+                                <rect key="frame" x="317" y="117.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zYF-A0-LdC">
+                                <rect key="frame" x="177.5" y="118" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ql9-Ps-5k1" firstAttribute="centerY" secondItem="U7d-qS-Gf6" secondAttribute="centerY" id="3fb-cr-Jib"/>
+                            <constraint firstItem="U7d-qS-Gf6" firstAttribute="top" secondItem="My1-y5-8jQ" secondAttribute="bottom" constant="20" id="4wt-Ov-uMm"/>
+                            <constraint firstItem="U7d-qS-Gf6" firstAttribute="leading" secondItem="UPi-Iw-IK6" secondAttribute="trailing" priority="250" constant="8" id="6ps-Rn-O89"/>
+                            <constraint firstItem="U7d-qS-Gf6" firstAttribute="centerX" secondItem="kdL-4I-S47" secondAttribute="centerX" id="9ha-te-iwy"/>
+                            <constraint firstItem="ql9-Ps-5k1" firstAttribute="leading" secondItem="U7d-qS-Gf6" secondAttribute="trailing" priority="250" constant="8" id="Kdn-BH-mZR"/>
+                            <constraint firstItem="Imm-1o-KfD" firstAttribute="bottom" secondItem="rUS-gF-0r0" secondAttribute="bottom" priority="250" constant="20" id="MkM-6T-ZfQ"/>
+                            <constraint firstItem="rUS-gF-0r0" firstAttribute="centerX" secondItem="kdL-4I-S47" secondAttribute="centerX" id="Ool-W8-bvl"/>
+                            <constraint firstItem="hMl-bt-oeb" firstAttribute="centerX" secondItem="kdL-4I-S47" secondAttribute="centerX" id="XF3-7G-neV"/>
+                            <constraint firstItem="zYF-A0-LdC" firstAttribute="centerX" secondItem="U7d-qS-Gf6" secondAttribute="centerX" id="XOP-ji-kZX"/>
+                            <constraint firstItem="My1-y5-8jQ" firstAttribute="top" secondItem="hMl-bt-oeb" secondAttribute="bottom" constant="8" id="eQc-yd-pwm"/>
+                            <constraint firstItem="My1-y5-8jQ" firstAttribute="centerX" secondItem="hMl-bt-oeb" secondAttribute="centerX" id="h0R-Cu-v2Y"/>
+                            <constraint firstItem="UPi-Iw-IK6" firstAttribute="leading" secondItem="Imm-1o-KfD" secondAttribute="leading" constant="16" id="kqo-v6-Kd0"/>
+                            <constraint firstItem="UPi-Iw-IK6" firstAttribute="centerY" secondItem="U7d-qS-Gf6" secondAttribute="centerY" id="lO1-Jo-cxd"/>
+                            <constraint firstItem="hMl-bt-oeb" firstAttribute="top" secondItem="Imm-1o-KfD" secondAttribute="top" constant="8" id="mP6-qC-e3d"/>
+                            <constraint firstItem="rUS-gF-0r0" firstAttribute="top" secondItem="U7d-qS-Gf6" secondAttribute="bottom" constant="20" id="rd5-f0-dbd"/>
+                            <constraint firstItem="zYF-A0-LdC" firstAttribute="centerY" secondItem="U7d-qS-Gf6" secondAttribute="centerY" id="tKI-6a-Qia"/>
+                            <constraint firstItem="Imm-1o-KfD" firstAttribute="trailing" secondItem="ql9-Ps-5k1" secondAttribute="trailing" constant="16" id="xmz-PX-LDJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Imm-1o-KfD"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="zYF-A0-LdC" id="948-0m-9fq"/>
+                        <outlet property="datelabel" destination="hMl-bt-oeb" id="n79-2f-iGx"/>
+                        <outlet property="descriptionLabel" destination="rUS-gF-0r0" id="wdA-F1-E2a"/>
+                        <outlet property="iconImageView" destination="U7d-qS-Gf6" id="MdZ-Z6-KrH"/>
+                        <outlet property="temperatureLabel" destination="UPi-Iw-IK6" id="Bh0-h2-vV7"/>
+                        <outlet property="timeLabel" destination="My1-y5-8jQ" id="VBw-7o-lDh"/>
+                        <outlet property="windSpeedLabel" destination="ql9-Ps-5k1" id="Unm-2o-7wQ"/>
+                        <outletCollection property="regularLabels" destination="UPi-Iw-IK6" collectionClass="NSMutableArray" id="zVQ-QY-Xo6"/>
+                        <outletCollection property="regularLabels" destination="ql9-Ps-5k1" collectionClass="NSMutableArray" id="52k-7H-hXr"/>
+                        <outletCollection property="smallLabels" destination="My1-y5-8jQ" collectionClass="NSMutableArray" id="6uJ-rQ-KZi"/>
+                        <outletCollection property="smallLabels" destination="rUS-gF-0r0" collectionClass="NSMutableArray" id="eFn-oS-dLs"/>
+                        <outletCollection property="weatherDataViews" destination="hMl-bt-oeb" collectionClass="NSMutableArray" id="SFo-e0-zbV"/>
+                        <outletCollection property="weatherDataViews" destination="My1-y5-8jQ" collectionClass="NSMutableArray" id="mt0-Uk-MeO"/>
+                        <outletCollection property="weatherDataViews" destination="ql9-Ps-5k1" collectionClass="NSMutableArray" id="RFy-jg-NKd"/>
+                        <outletCollection property="weatherDataViews" destination="UPi-Iw-IK6" collectionClass="NSMutableArray" id="fQT-ay-bVA"/>
+                        <outletCollection property="weatherDataViews" destination="rUS-gF-0r0" collectionClass="NSMutableArray" id="GyB-St-L5p"/>
+                        <outletCollection property="weatherDataViews" destination="U7d-qS-Gf6" collectionClass="NSMutableArray" id="fW0-y0-MHc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZi-Yt-LoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="743" y="37"/>
+            <point key="canvasLocation" x="645.60000000000002" y="44.527736131934034"/>
         </scene>
         <!--Week View Controller-->
         <scene sceneID="edi-hF-RXo">

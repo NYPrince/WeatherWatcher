@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D2A2FB221AA122E006624A2 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2A2FB121AA122E006624A2 /* UIImage.swift */; };
+		1D2A2FB421AB71C1006624A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D2A2FB321AB71C1006624A2 /* Assets.xcassets */; };
 		1D2B2DE5218BC048009594F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2DE4218BC048009594F3 /* AppDelegate.swift */; };
 		1D2B2DE7218BC048009594F3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2DE6218BC048009594F3 /* RootViewController.swift */; };
 		1D2B2DEA218BC048009594F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D2B2DE8218BC048009594F3 /* Main.storyboard */; };
-		1D2B2DEC218BC049009594F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D2B2DEB218BC049009594F3 /* Assets.xcassets */; };
 		1D2B2DEF218BC049009594F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D2B2DED218BC049009594F3 /* LaunchScreen.storyboard */; };
 		1D2B2DFD218BC46C009594F3 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2DFC218BC46C009594F3 /* DayViewController.swift */; };
 		1D2B2E01218BC55B009594F3 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2DFF218BC55B009594F3 /* WeekViewController.swift */; };
@@ -21,14 +22,18 @@
 		1D2B2E10218E90FE009594F3 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2B2E0F218E90FE009594F3 /* RootViewModel.swift */; };
 		1DA2EDA721950A7D00727DA9 /* DarkSkyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDA621950A7D00727DA9 /* DarkSkyResponse.swift */; };
 		1DA2EDAA21964F3E00727DA9 /* Weatherdata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDA921964F3E00727DA9 /* Weatherdata.swift */; };
+		1DA2EDAD21966C3900727DA9 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDAC21966C3900727DA9 /* DayViewModel.swift */; };
+		1DA2EDB021966CA200727DA9 /* WeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDAF21966CA200727DA9 /* WeekViewModel.swift */; };
+		1DA2EDB221A8F22900727DA9 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2EDB121A8F22900727DA9 /* Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D2A2FB121AA122E006624A2 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		1D2A2FB321AB71C1006624A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D2B2DE1218BC048009594F3 /* WeatherWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D2B2DE4218BC048009594F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D2B2DE6218BC048009594F3 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		1D2B2DE9218BC048009594F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1D2B2DEB218BC049009594F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D2B2DEE218BC049009594F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D2B2DF0218BC049009594F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D2B2DFC218BC46C009594F3 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +45,9 @@
 		1D2B2E0F218E90FE009594F3 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		1DA2EDA621950A7D00727DA9 /* DarkSkyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyResponse.swift; sourceTree = "<group>"; };
 		1DA2EDA921964F3E00727DA9 /* Weatherdata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weatherdata.swift; sourceTree = "<group>"; };
+		1DA2EDAC21966C3900727DA9 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		1DA2EDAF21966CA200727DA9 /* WeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewModel.swift; sourceTree = "<group>"; };
+		1DA2EDB121A8F22900727DA9 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +122,7 @@
 		1D2B2DF9218BC1E8009594F3 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				1D2B2DEB218BC049009594F3 /* Assets.xcassets */,
+				1D2A2FB321AB71C1006624A2 /* Assets.xcassets */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1D2B2DFC218BC46C009594F3 /* DayViewController.swift */,
+				1DA2EDAB21966C0600727DA9 /* ViewModels */,
 			);
 			path = DayViewController;
 			sourceTree = "<group>";
@@ -139,6 +148,7 @@
 		1D2B2DFE218BC537009594F3 /* WeekViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1DA2EDAE21966C9000727DA9 /* ViewModels */,
 				1D2B2DFF218BC55B009594F3 /* WeekViewController.swift */,
 			);
 			path = WeekViewController;
@@ -149,6 +159,7 @@
 			children = (
 				1D2B2E04218BC6A9009594F3 /* UIViewController.swift */,
 				1D2B2E06218BC785009594F3 /* UIStoryboard.swift */,
+				1D2A2FB121AA122E006624A2 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				1D2B2E0C218D4401009594F3 /* Configuration.swift */,
+				1DA2EDB121A8F22900727DA9 /* Style.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -185,6 +197,22 @@
 				1DA2EDA921964F3E00727DA9 /* Weatherdata.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1DA2EDAB21966C0600727DA9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1DA2EDAC21966C3900727DA9 /* DayViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1DA2EDAE21966C9000727DA9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1DA2EDAF21966CA200727DA9 /* WeekViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D2B2DEF218BC049009594F3 /* LaunchScreen.storyboard in Resources */,
-				1D2B2DEC218BC049009594F3 /* Assets.xcassets in Resources */,
+				1D2A2FB421AB71C1006624A2 /* Assets.xcassets in Resources */,
 				1D2B2DEA218BC048009594F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,12 +291,16 @@
 				1D2B2DE5218BC048009594F3 /* AppDelegate.swift in Sources */,
 				1DA2EDAA21964F3E00727DA9 /* Weatherdata.swift in Sources */,
 				1D2B2E01218BC55B009594F3 /* WeekViewController.swift in Sources */,
+				1DA2EDB221A8F22900727DA9 /* Style.swift in Sources */,
+				1D2A2FB221AA122E006624A2 /* UIImage.swift in Sources */,
 				1D2B2DFD218BC46C009594F3 /* DayViewController.swift in Sources */,
 				1D2B2E0A218D40C2009594F3 /* WeatherRequest.swift in Sources */,
+				1DA2EDB021966CA200727DA9 /* WeekViewModel.swift in Sources */,
 				1D2B2E0D218D4401009594F3 /* Configuration.swift in Sources */,
 				1D2B2E10218E90FE009594F3 /* RootViewModel.swift in Sources */,
 				1DA2EDA721950A7D00727DA9 /* DarkSkyResponse.swift in Sources */,
 				1D2B2E05218BC6A9009594F3 /* UIViewController.swift in Sources */,
+				1DA2EDAD21966C3900727DA9 /* DayViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
