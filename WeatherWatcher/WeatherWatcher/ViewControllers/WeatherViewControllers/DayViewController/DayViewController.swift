@@ -81,7 +81,7 @@ final class DayViewController: UIViewController {
     
    func setupView(){
     
-    view.backgroundColor = .gray
+    view.backgroundColor = .white
     }
     
     private func setupViewModel(with viewModel: DayViewModel ) {
