@@ -7,23 +7,40 @@
 //
 
 import Foundation
+import CoreLocation
 
-class RootViewModel {
+class RootViewModel: NSObject {
     
     enum WeatherDataError: Error {
+        case notAuthorizedToRequestLocation
         case noWeatherDataAvailable
+        
     }
-    
     
     typealias DidFetchWeatherDataCompletion = (WeatherData?, WeatherDataError?) ->Void
     
     var didFetchWeatherData: DidFetchWeatherDataCompletion?
     
-    init() {
-        fetchWeatherData()
+    private lazy var locationManager: CLLocationManager = {
+        
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        return locationManager
+    }()
+    
+    
+    override init() {
+        super.init()
+        fetchWeatherData(for: Defaults.location)
+        
+        fetchLocation()
     }
     
-    private func fetchWeatherData(){
+    private func fetchLocation (){
+        locationManager.requestLocation()
+    }
+    
+    private func fetchWeatherData(for: CLLocation ){
         let weatherRequest = WeatherRequest(baseUrl: WeatherService.authenticatedBaseUrl, location: Defaults.location)
         
         URLSession.shared.dataTask(with: weatherRequest.url) { [weak self](data, response, error) in
@@ -58,3 +75,35 @@ class RootViewModel {
     }
     
 }
+extension RootViewModel:CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if status == .notDetermined{
+            locationManager.requestWhenInUseAuthorization()
+        }else if status == .authorizedWhenInUse {
+            fetchLocation()
+        }else {
+            didFetchWeatherData?(nil, .notAuthorizedToRequestLocation)
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        fetchWeatherData(for: location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        print("unable to get location")
+    }
+}
+
+
+
+
+
+
+
+
