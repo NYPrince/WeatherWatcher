@@ -37,11 +37,12 @@ final class RootViewController: UIViewController {
         return dayViewController
     }()
     
-    private let weekViewController: WeekViewController = {
+    private lazy var weekViewController: WeekViewController = {
         guard let weekViewController = UIStoryboard.main.instantiateViewController(withIdentifier: WeekViewController.StoryboardIndentifier) as? WeekViewController else {
             fatalError("Unable to Instantiate Week View Controller")
         }
         // Configure Week View Controller
+            weekViewController.delegate = self
         weekViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
             return weekViewController
@@ -57,8 +58,8 @@ final class RootViewController: UIViewController {
     //MARK: - Helper Method
     private func setupChildViewController(){
         
-        addChild(dayViewController)
-        addChild(weekViewController)
+        addChildViewController(dayViewController)
+        addChildViewController(weekViewController)
         
         view.addSubview(dayViewController.view)
         view.addSubview(weekViewController.view)
@@ -76,37 +77,41 @@ final class RootViewController: UIViewController {
         weekViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         // Notify Child View Controller
-        dayViewController.didMove(toParent: self)
-        weekViewController.didMove(toParent: self)
+        dayViewController.didMove(toParentViewController: self)
+        weekViewController.didMove(toParentViewController: self)
     }
     
     private func setupViewModel(with viewModel: RootViewModel){
-        viewModel.didFetchWeatherData = {[weak self](weatherData, error)in
-            if let error = error {
+        viewModel.didFetchWeatherData = {[weak self](result)in
+            switch result {
+            case .success(let weatherData):
+                // Initialize Day View Model
+                let dayViewModel = DayViewModel(weatherData: weatherData.current)
                 
+                // Update Day View Controller
+                self?.dayViewController.viewModel = dayViewModel
+                
+                // Initialize Week View Model
+                let weekViewModel = WeekViewModel(weatherData: weatherData.forecast)
+                
+                // Update Week View Controller
+                self?.weekViewController.viewModel = weekViewModel
+            case .failure(let error):
                 let alertType: AlertType
                 
-                switch error{
+                switch error {
                 case .notAuthorizedToRequestLocation:
                     alertType = .notAuthorizedToRequestLocation
                 case .failedToRequestLocation:
                     alertType = .failedToRequestLocation
-                    
                 case .noWeatherDataAvailable:
                     alertType = .noWeatherDataAvailable
+            }
                 
-                }
+           self?.presentAlert(of: alertType)
+           self?.dayViewController.viewModel = nil
+           self?.weekViewController.viewModel = nil
                 
-                
-                
-                self?.presentAlert(of: alertType)
-            }else if let weatherData = weatherData as? DarkSkyResponse {
-                let dayViewModel = DayViewModel(weatherData: weatherData.current)
-                 self?.dayViewController.viewModel = dayViewModel 
-                let weekViewModel = WeekViewModel(weatherData: weatherData.forecast)
-                self?.weekViewController.viewModel = weekViewModel
-            }else{
-                self?.presentAlert(of: .noWeatherDataAvailable)
             }
         }
     }
@@ -134,15 +139,13 @@ final class RootViewController: UIViewController {
     }
 }
 
-
-
-
-
-
-
-
-
-
+extension RootViewController: WeekViewControllerDelegate{
+    func controllerDidRefresh(_ controller: WeekViewController) {
+        viewModel?.refresh()
+    }
+    
+    
+}
 
 
 

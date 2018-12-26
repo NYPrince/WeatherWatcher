@@ -16,6 +16,16 @@ enum Defaults {
     
 }
 
+enum Configuration{
+    static var refreshThreshold: TimeInterval{
+        #if DEBUG
+        return 60.0
+        #else
+        return 10.0
+        #endif 
+    }
+}
+
 enum WeatherService {
   private  static var apiKey = "eb1b7b2e761f6459f17a59985f16df15"
   private  static var baseUrl = URL(string: "https://api.darksky.net/forecast")!

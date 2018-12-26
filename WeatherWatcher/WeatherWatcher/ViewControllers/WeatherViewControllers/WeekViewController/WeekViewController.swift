@@ -8,24 +8,33 @@
 
 import UIKit
 
+protocol WeekViewControllerDelegate: class {
+    func controllerDidRefresh(_ controller: WeekViewController)
+}
+
 final class WeekViewController: UIViewController {
+    
+   weak var delegate: WeekViewControllerDelegate?
     
     var viewModel: WeekViewModel?{
         didSet{
-            guard let viewModel = viewModel else {
-                return
+            refreshControl.endRefreshing()
+           if  let viewModel = viewModel  {
+                setupViewModel(with : viewModel)
             }
-            setupViewModel(with : viewModel)
+            
         }
     }
     @IBOutlet var tableView: UITableView!{
         didSet{
             tableView.isHidden = true
-            tableView.dataSource = self as! UITableViewDataSource
+            tableView.dataSource = self 
             tableView.separatorInset = .zero
             tableView.estimatedRowHeight = 44.0
-            tableView.rowHeight = UITableView.automaticDimension
+            tableView.rowHeight = UITableViewAutomaticDimension
             tableView.showsVerticalScrollIndicator = false
+            
+            tableView.refreshControl = refreshControl
         }
     }
     
@@ -36,12 +45,24 @@ final class WeekViewController: UIViewController {
             activityIndicatorView.hidesWhenStopped = true
         }
     }
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.Weatherwatch.baseTintColor
+        
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        
+        return refreshControl
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-       
+    }
+    @objc private func refresh(_ sender:UIRefreshControl){
+        delegate?.controllerDidRefresh(self)
     }
 
     //MARK: - Helper Methods
@@ -67,7 +88,7 @@ extension WeekViewController: UITableViewDataSource{
             fatalError("Unable to fetch Week day View cell")
         }
         
-        guard let veiwModel = viewModel else {
+        guard viewModel != nil else {
             fatalError("No View Model available")
         }
         cell.configure(with: viewModel!.viewModel(for: indexPath.row))

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreLocation
+
 
 class RootViewModel: NSObject {
     
@@ -18,9 +18,15 @@ class RootViewModel: NSObject {
         
     }
     
-    typealias DidFetchWeatherDataCompletion = (WeatherData?, WeatherDataError?) ->Void
+    enum WeatherDataResult {
+        case success(WeatherData)
+        case failure(WeatherDataError)
+    }
     
-    var didFetchWeatherData: DidFetchWeatherDataCompletion?
+    
+    typealias FetchWeatherDataCompletion = (WeatherDataResult) ->Void
+    
+    var didFetchWeatherData: FetchWeatherDataCompletion?
     
     private let locationService: LocationService
     
@@ -30,31 +36,28 @@ class RootViewModel: NSObject {
         super.init()
         fetchWeatherData(for: Defaults.location)
         
+        setupNoticationaHandling()
         fetchLocation()
     }
     
-    private func fetchLocation (){
-        locationService.fetchLocation { [weak self](location, error) in
-            
-            if let error = error {
-                
+    private func fetchLocation() {
+        locationService.fetchLocation { [weak self] (result) in
+            switch result {
+            case .success(let location):
+                // Fetch Weather Data
+                self?.fetchWeatherData(for: location)
+            case .failure(let error):
                 print("Unable to Fetch Location (\(error))")
                 
-                self?.didFetchWeatherData?(nil, .notAuthorizedToRequestLocation )
-            } else {
-                print("Unable to Fetch Location")
+                let result:WeatherDataResult = .failure(.notAuthorizedToRequestLocation)
                 
-                 self?.didFetchWeatherData?(nil, .failedToRequestLocation)
-            }
-            if let location = location {
-                self?.fetchWeatherData(for: location)
-            }else{
-                print("unable to fetch location")
-                self?.didFetchWeatherData?(nil, .notAuthorizedToRequestLocation)
+                // Invoke Completion Handler
+                self?.didFetchWeatherData?(result)
             }
         }
     }
-    
+        
+
     private func fetchWeatherData(for: Location ){
         let weatherRequest = WeatherRequest(baseUrl: WeatherService.authenticatedBaseUrl, location: Defaults.location)
         
@@ -65,7 +68,9 @@ class RootViewModel: NSObject {
             DispatchQueue.main.async {
                 if error != nil {
                     print("Uable to fetch Weather data \(String(describing: error))")
-                    self?.didFetchWeatherData?(nil, .noWeatherDataAvailable )
+                      let result:WeatherDataResult = .failure(.notAuthorizedToRequestLocation)
+                    
+                    self?.didFetchWeatherData?(result)
                 }else if let data = data {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .secondsSince1970
@@ -73,23 +78,71 @@ class RootViewModel: NSObject {
                     do {
                         let darkSkyResponse = try decoder.decode(DarkSkyResponse.self
                             , from: data)
-                        self?.didFetchWeatherData?(darkSkyResponse, nil)
+                       let result:WeatherDataResult = .success(darkSkyResponse)
+                        UserDefaults.didFetchWeatherData = Date()
+                        
+                        self?.didFetchWeatherData?(result)
                         
                     }catch{
                         print("Unable to decode JSON \(error) ")
                         
-                        self?.didFetchWeatherData?(nil, .noWeatherDataAvailable)
+                        let result:WeatherDataResult = .failure(.notAuthorizedToRequestLocation)
                     }
                     
                 } else{
-                    self?.didFetchWeatherData?(nil, .noWeatherDataAvailable)
+                    let result:WeatherDataResult = .failure(.notAuthorizedToRequestLocation)
                 }
             }
             
         }.resume()
     }
     
+    private func setupNoticationaHandling(){
+        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationWillEnterForeground, object: nil, queue: OperationQueue.main) { [weak self] (_) in
+            guard let didFetchWeatherData = UserDefaults.didFetchWeatherData else{
+                
+                self?.refresh()
+                return
+            }
+            if Date().timeIntervalSince(didFetchWeatherData) > Configuration.refreshThreshold {
+                self?.refresh()
+            }
+            
+        }
+        
+    }
+     func refresh(){
+        fetchLocation()
+        
+    }
+    
 }
+extension UserDefaults{
+    private enum Keys {
+        static let didFetchWeatherData = "didFetchWeatherData"
+    }
+    fileprivate class var didFetchWeatherData: Date? {
+        get{
+         
+            return UserDefaults.standard.object(forKey: Keys.didFetchWeatherData) as? Date
+        }
+        set(newValue){
+            UserDefaults.standard.set(newValue, forKey: Keys.didFetchWeatherData)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
